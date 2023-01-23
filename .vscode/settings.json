@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/999973cf-bc9c-4465-b5ef-9ab85870add3/AppServices/subscriptions/999973cf-bc9c-4465-b5ef-9ab85870add3/resourceGroups/kebswebsite/providers/Microsoft.Web/sites/kebsite/subscriptions/999973cf-bc9c-4465-b5ef-9ab85870add3/resourceGroups/kebswebsite/providers/Microsoft.Web/sites/kebsite/slots/subscriptions/999973cf-bc9c-4465-b5ef-9ab85870add3/resourceGroups/kebswebsite/providers/Microsoft.Web/sites/kebsite/slots/new",
-    "appService.deploySubpath": "."
-}
