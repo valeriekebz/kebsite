@@ -20,7 +20,7 @@ class JConfig {
 	public $live_site = '';
 	public $secret = 'mbLEGrZgdLCYkcF4';
 	public $gzip = '0';
-	public $error_reporting = 'default';
+	public $error_reporting = 'development';
 	public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
 	public $ftp_host = 'waws-prod-am2-209.ftp.azurewebsites.windows.net';
 	public $ftp_port = '990';
