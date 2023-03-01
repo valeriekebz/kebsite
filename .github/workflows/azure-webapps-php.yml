@@ -25,10 +25,10 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: 'testsitekebs'   # set this to your application's name
+  AZURE_WEBAPP_NAME: 'testsitekebs-test2'   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   PHP_VERSION: '8.x'                  # set this to the PHP version to use
-  SLOT_NAME: 'test2'
+  # SLOT_NAME: 'test2'
 
 permissions:
   contents: read
