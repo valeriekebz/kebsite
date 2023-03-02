@@ -1,17 +1,4 @@
 # PHP
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'KEBS Website: Test Environment(0b0d9c1c-564c-4f8e-9cf3-b82f986d2136)'
-    appType: 'webApp'
-    WebAppName: 'kebstestsite'
-    deployToSlotOrASE: true
-    ResourceGroupName: 'testRG'
-    SlotName: 'production'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-# Test and package your PHP project.
-# Add steps that run tests, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/php
 
 trigger:
 - main
