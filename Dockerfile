@@ -15,7 +15,7 @@ RUN chown -R www-data:www-data /var/www/html
 
 
 COPY . /var/www/html/
-COPY ./sql/ /docker-entrypoint-initdb.d/
+
 
 
 EXPOSE 8080
