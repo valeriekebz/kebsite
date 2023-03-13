@@ -1,0 +1,60 @@
+name: Trigger auto deployment for kebs
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'Dockerfile/**'
+    - '.github/workflows/kebs-AutoDeployTrigger-35b51985-04e1-4eec-8472-0e6565754590.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:      
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to container registry
+        uses: docker/login-action@v1
+        with:
+          registry: testkebs.azurecr.io
+          username: ${{ secrets.KEBS_REGISTRY_USERNAME }}
+          password: ${{ secrets.KEBS_REGISTRY_PASSWORD }}
+
+      - name: Build and push container image to registry
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: testkebs.azurecr.io/kebsite:${{ github.sha }}
+          file: Dockerfile/Dockerfile
+          context: Dockerfile/
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.KEBS_AZURE_CREDENTIALS }}
+
+
+      - name: Deploy to containerapp
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az config set extension.use_dynamic_install=yes_without_prompt
+            az containerapp registry set -n kebs -g testRG --server testkebs.azurecr.io --username  ${{ secrets.KEBS_REGISTRY_USERNAME }} --password ${{ secrets.KEBS_REGISTRY_PASSWORD }}
+            az containerapp update -n kebs -g testRG --image testkebs.azurecr.io/kebsite:${{ github.sha }}
