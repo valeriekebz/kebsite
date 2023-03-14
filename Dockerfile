@@ -10,7 +10,7 @@ RUN mkdir /var/www/tmp
 RUN chown -R www-data:www-data /var/www/tmp && chmod -R 777 /var/www/tmp
 RUN chown -R www-data:www-data /var/www/html/log && chmod -R 777 /var/www/html/log
 
-RUN chown -R www-data:www-data /var/www/html 
+RUN chown -R www-data:www-data /var/www/html && chmod -R 777 /var/www/html
 
 
 
