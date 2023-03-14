@@ -2,7 +2,8 @@ FROM php:7.0-apache
 # Create a new user with a specific UID and GID RUN
  groupadd -r container && useradd --no-log-init -r -g container -u 1000 agent
  
-RUN chown agent:container /app 
+RUN chown agent:container /var/www/html/ \
+    && chmod -R /var/www/html/
  # Switch to the new user
 USER agent
  
